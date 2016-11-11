@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Assets.Scripts.Interfaces;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.States
 {
@@ -15,6 +16,7 @@ namespace Assets.Scripts.States
 
 		public void StateUpdate(){
 			if (Input.GetKeyUp (KeyCode.Space)) {
+				SceneManager.LoadScene (1); // 1 es el gameScene
 				manager.SwitchState (new PlayState (manager));
 			}
 		}
