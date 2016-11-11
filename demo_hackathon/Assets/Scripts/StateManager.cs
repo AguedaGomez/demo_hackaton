@@ -6,6 +6,16 @@ using Assets.Scripts.Interfaces;
 public class StateManager : MonoBehaviour {
 
 	private IStateBase activeState;
+	private static StateManager instanceRef;
+
+	void Awake(){
+		if (instanceRef == null) {
+			instanceRef = this;
+			DontDestroyOnLoad (gameObject);
+		} else {
+			DestroyImmediate (gameObject);
+		}
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +28,11 @@ public class StateManager : MonoBehaviour {
 		if (activeState != null) {
 			activeState.StateUpdate ();
 		}
+	}
+
+	void OnGUI(){
+		if (activeState != null)
+			activeState.ShowIt ();
 	}
 
 	public void SwitchState(IStateBase newState){

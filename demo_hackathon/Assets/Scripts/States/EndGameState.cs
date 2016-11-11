@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using Assets.Scripts.Interfaces;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.States
 {
@@ -16,6 +17,7 @@ namespace Assets.Scripts.States
 
 		public void StateUpdate(){
 			if (Input.GetKeyUp (KeyCode.Space)) {
+				SceneManager.LoadScene (0);
 				manager.SwitchState (new BeginState (manager));
 			}
 		}
